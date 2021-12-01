@@ -1,0 +1,95 @@
+@import url(./normalize.css);
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap');
+*{
+  margin: 0;padding: 0;box-sizing: border-box
+}
+body{
+  font-family: 'Quicksand', sans-serif;
+  color: #fff;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../img/image-from-rawpixel-id-1204781-jpeg.jpg);
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 0;
+}
+.time{
+  font-size: clamp(100px, 8rem, 150px);
+  line-height: 1;
+  margin-bottom: 10vw;
+  text-align: center;
+}
+#texto{
+  margin: 0 auto 2rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 8px;
+  width: 90%;
+  transition: width .5s;
+}
+#texto:focus{
+  outline: none;
+  width: 100%;
+}
+#add{
+  width: fit-content;
+  padding: .5rem 1.5rem;
+  line-height: 1.5;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .0);
+  color: #fff;
+  border: 3px solid #fff;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#add:hover{
+  background: rgba(255, 255, 255, .2);
+}
+#add:active{
+  transform: scale(.95);
+  border: 3px groove #fff;
+}
+#add span{
+  margin-right: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.tareas{
+  margin-top: 2rem;
+  min-width: 300px;
+  background: rgba(255, 255, 255, .1);
+  border-radius: 10px;
+}
+.tarea{
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+.tarea label{
+  flex-grow: 1;
+  margin: 0 1rem 0;
+}
+
+.tachado{
+  text-decoration: line-through;
+  color: #ccc;
+  transition: all .3s;
+}
