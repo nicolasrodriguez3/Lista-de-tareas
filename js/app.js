@@ -25,9 +25,14 @@ function agregarTareas() {
 
 		// verificar si existen tareas agregadas para actualizar el id
 		if ($lista.hasChildNodes()) {
-			// obtener el ID de la ultima tarea agregada (ubicado en el ultimo caracter)
+			// obtener el ID de la primer tarea agregada (ubicado en el ultimo caracter)
+			/**
+			** $lista = lista de tareas
+			** firstChild = cada una de las tareas. es un div
+			** lastChild.id = es el id de cada tachito de basura. ultimo hijo
+			*/
 			nroTarea = Number(
-				$lista.lastChild.lastChild.id[$lista.lastChild.lastChild.id.length - 1]
+				$lista.firstChild.lastChild.id[$lista.firstChild.lastChild.id.length - 1]
 			);
 			// y sumarle 1
 			nroTarea += 1;
@@ -35,7 +40,8 @@ function agregarTareas() {
 
 		template = template.replace(/{{}}/g, nroTarea);
 		template = template.replace(/REEMPLAZAR/, $texto.value);
-		$lista.innerHTML += template;
+		// $lista.innerHTML += template;  //*se agregaba el nuevo item al final
+		$lista.innerHTML = template + $lista.innerHTML;
 
 		//actualizar la lista de tareas
 		$trash = document.querySelectorAll(".fa-trash-alt");
@@ -43,22 +49,31 @@ function agregarTareas() {
 			tarea.addEventListener("click", borrarTarea);
 		});
 
+
+		/****************************
+		 ** Tachar cada tarea
+		 ***************************/
 		let $input = document.querySelectorAll("[type=checkbox]");
-		console.log($input);
 		$input.forEach(function (input) {
 			input.addEventListener("change", function () {
 				//obtener el id del input
 				nroTarea = this.id;
-				console.log(nroTarea);
 				//obtener lista de tareas
 				$lista = document.querySelector(".tareas");
 				// iterar cada una de las tareas buscando que el id coincida
 				$lista.childNodes.forEach(function (nodo) {
 					if (nodo.firstChild.id == nroTarea) {
 
-						// tachar el elemento al cambiar el estado del checkbox
+						// tachar el elemento al cambiar el estado del checkbox y
+						// agregar o remover el atributo "checked" al input
 						// nodo.childNodes[1].classList.toggle("tachado");
-						(nodo.firstChild.checked) ? nodo.childNodes[1].classList.add("tachado") : nodo.childNodes[1].classList.remove("tachado");
+						if(nodo.firstChild.checked){ 
+							nodo.childNodes[1].classList.add("tachado");
+							nodo.firstChild.setAttribute("checked", "");
+					}else{
+						nodo.childNodes[1].classList.remove("tachado");
+						nodo.firstChild.removeAttribute("checked");
+					}
 					}
 				});
 			});
@@ -86,6 +101,3 @@ function borrarTarea() {
 		}
 	});
 }
-
-//tachar la tarea
-let $input = document.querySelectorAll("input[checkbox]");
