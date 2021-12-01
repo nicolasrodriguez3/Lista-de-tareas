@@ -43,6 +43,9 @@ function agregarTareas() {
 		// $lista.innerHTML += template;  //*se agregaba el nuevo item al final
 		$lista.innerHTML = template + $lista.innerHTML;
 
+		//* Vaciar el input del usuario
+		$texto.value = "";
+
 		//actualizar la lista de tareas
 		$trash = document.querySelectorAll(".fa-trash-alt");
 		$trash.forEach((tarea) => {
